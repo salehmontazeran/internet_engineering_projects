@@ -15,7 +15,8 @@ class TCPHandler(socketserver.BaseRequestHandler):
         self.request.send(str(time).encode())
 
 
-address = ('localhost', PORT_ADDRESS)
-server = socketserver.TCPServer(address, TCPHandler)
-print(welcome_message)
-server.serve_forever()
+if __name__ == "__main__":
+    address = ('localhost', PORT_ADDRESS)
+    server = socketserver.TCPServer(address, TCPHandler)
+    print(welcome_message)
+    server.serve_forever()
