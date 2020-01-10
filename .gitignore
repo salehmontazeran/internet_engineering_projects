@@ -190,3 +190,5 @@ pip-selfcheck.json
 .history
 
 # End of https://www.gitignore.io/api/django,python,virtualenv,visualstudiocode
+
+webserver_log.txt
