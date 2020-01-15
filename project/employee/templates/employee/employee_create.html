@@ -16,22 +16,21 @@
                 {% endif %}
 		
                 {% for field in form %}
-                <div class="fieldWrapper">
-                    {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
-                    {{ field.errors }}
-                    {{ field }}
-                    {% if field.help_text %}
-                    <p class="help">{{ field.help_text|safe }}</p>
-                    {% endif %}
-                </div>
-                <br>
+                    <div class="fieldWrapper">
+                        {{ field.label_tag }}{% if field.field.required %}<span style="color: red;" class="required">*</span>{% endif %}
+                        <div style="color: red;">
+                            {{ field.errors }}
+                        </div>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                    <br>
                 {% endfor %}
-		<input type="submit" class="btn btn-primary mb-2" value="Submit" />
+		        <input type="submit" class="btn btn-primary mb-2" value="Submit" />
             </form>
         </div>
-	<div class="col-md-4">
-	    <!-- Other column -->
-	</div>
     </div>
 </div>
 

@@ -2,10 +2,20 @@ from django.core.validators import (MaxLengthValidator, MaxValueValidator,
                                     MinLengthValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
+from django.urls import reverse
 
-numerical = RegexValidator(r'^[0-9]*$', 'Only numerical characters are allowed.')
-alphabetical = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetical characters are allowed.')
-mobile = RegexValidator(r'^09\d{9}$', 'Only valid mobile number is allowed.')
+numerical = RegexValidator(
+    r'^[0-9]*$',
+    'Only numerical characters are allowed.'
+)
+alphabetical = RegexValidator(
+    r'^[a-zA-Z ]*$',
+    'Only alphabetical characters are allowed.'
+)
+mobile = RegexValidator(
+    r'^09\d{9}$',
+    'Only valid mobile number is allowed.'
+)
 
 
 class Employee(models.Model):
@@ -28,14 +38,17 @@ class Employee(models.Model):
         validators=[alphabetical, MinLengthValidator(1)]
     )
     ssn = models.CharField(
+        unique=True,
         max_length=10,
         validators=[numerical, MinLengthValidator(10), MaxLengthValidator(10)]
     )
     personal_number = models.CharField(
+        unique=True,
         max_length=7,
         validators=[numerical, MinLengthValidator(7), MaxLengthValidator(7)]
     )
     mobile = models.CharField(
+        unique=True,
         max_length=11,
         validators=[mobile]
     )
@@ -46,3 +59,9 @@ class Employee(models.Model):
         validators=[MinValueValidator(18), MaxValueValidator(70)]
     )
     salary = models.PositiveIntegerField()
+
+    def get_delete_url(self):
+        return reverse("employee:employee_delete", kwargs={"id": self.id})
+
+    def get_edit_url(self):
+        return reverse("employee:employee_edit", kwargs={"id": self.id})

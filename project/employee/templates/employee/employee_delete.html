@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form method="POST">
+                <h4>Do you want do delete {{ object.first_name }} {{ object.last_name }} with ID: {{ object.id }} ?</h2>
+                {% csrf_token %}
+
+                <input type="submit" name="action" value="Delete" class="btn btn-success"></input>
+                <input type="submit" name="action" value="Cancel" class="btn btn-danger"></input>
+            </form>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

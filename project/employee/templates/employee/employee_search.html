@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form method="GET" action="../../employee/list/">
+                <div class="fieldWrapper">
+                    <label for="id_last_name">Last name:</label>
+                    <input type="text" name="last_name" class="form-control" maxlength="30" id="id_last_name">
+                </div>
+                <div class="fieldWrapper">
+                    <label for="id_age">Age:</label>
+                    <input type="number" name="age" class="form-control" min="18" max="70" id="id_age">
+                </div>
+
+                <div class="fieldWrapper">
+                    <label for="id_marital_status">Marital status:</label>
+                    <select name="marital_status" class="form-control" id="id_marital_status">
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                    </select>
+                </div>
+                <br>
+                <input type="submit" class="btn btn-primary mb-2" value="Search" />
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

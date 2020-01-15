@@ -68,3 +68,9 @@ class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
         fields = "__all__"
+
+
+class ChnageEmployeeForm(EmployeeForm):
+    def __init__(self, *args, **kwargs):
+        super(ChnageEmployeeForm, self).__init__(*args, **kwargs)
+        self.fields['personal_number'].disabled = True
