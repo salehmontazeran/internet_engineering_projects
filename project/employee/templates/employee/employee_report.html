@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form>
+                <div class="fieldWrapper">
+                    <label>Number of single employees</label>
+                    <input type="number" class="form-control" disabled value="{{ total_single }}">
+                </div>
+                <br>
+                <div class="fieldWrapper">
+                    <label>Number of married employees</label>
+                    <input type="number" class="form-control" disabled value="{{ total_married }}">
+                </div>
+                <br>
+
+                <div class="fieldWrapper">
+                    <label>Employee with max salary</label>
+                    <input type="text" class="form-control" disabled value="{{ max_salary_employee_info }}">
+                </div>
+                <br>
+
+                <div class="fieldWrapper">
+                    <label>Employee with min salary</label>
+                    <input type="text" class="form-control" disabled value="{{ min_salary_employee_info }}">
+                </div>
+                <br>
+
+                <div class="fieldWrapper">
+                    <label>Sum of employees salary</label>
+                    <input type="number" class="form-control" disabled value="{{ sum_salary }}">
+                </div>
+                <br>
+
+                <div class="fieldWrapper">
+                    <label>Standard derivation of employees salary</label>
+                    <input type="number" class="form-control" disabled value="{{ salary_stdev }}">
+                </div>
+                <br>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

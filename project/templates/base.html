@@ -13,7 +13,7 @@
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Employee Management System</a>
+        <a class="navbar-brand" href="/">Employee Management System</a>
       
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,17 +22,30 @@
       
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
           <ul class="navbar-nav">
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="/employee/list">Employee list</a>
+              <a class="nav-link" href="/employee/list/">Employee list</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/employee/search">Search</a>
+              <a class="nav-link" href="/employee/search/">Search</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="/employee/report/">Report</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/logout/">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/login/">Login</a>
+            </li>
+            {% endif %}
+
           </ul>
+
         </div>
       </nav>
 
@@ -43,5 +56,4 @@
 {% endblock %}
     
 </body>
-    
 </html>
