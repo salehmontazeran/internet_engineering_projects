@@ -58,7 +58,9 @@ class Employee(models.Model):
     age = models.IntegerField(
         validators=[MinValueValidator(18), MaxValueValidator(70)]
     )
-    salary = models.PositiveIntegerField()
+    salary = models.IntegerField(
+        validators=[MinValueValidator(0)]
+    )
 
     def get_delete_url(self):
         return reverse("employee:employee_delete", kwargs={"id": self.id})

@@ -61,24 +61,45 @@ def employee_list_view(request):
 
 
 @login_required
-def employee_delete_view(request, id):
-    obj = get_object_or_404(Employee, id=id)
-    print(obj)
+def employee_delete_confirmation_view(request, id):
+    obj = Employee.objects.filter(id=id)
+    if not obj:
+        return render(request, 'employee/employee_notfound.html')
     if request.method == "POST":
         if request.POST['action'] == "Delete":
             obj.delete()
         return redirect('employee:employee_list')
+
     context = {
-        "object": obj
+        "object": obj[0]
     }
-    return render(request, "employee/employee_delete.html", context)
+    return render(
+        request,
+        "employee/employee_delete_confirmation.html",
+        context
+    )
+
+
+@login_required
+def employee_delete_view(request):
+    if request.method == "POST":
+        personal_number = request.POST.get('personal_number')
+        print("*** ", personal_number)
+        obj = Employee.objects.filter(personal_number=personal_number)
+        if not obj:
+            return render(request, 'employee/employee_notfound.html')
+        obj.delete()
+
+    return render(request, 'employee/employee_delete.html')
 
 
 @login_required
 def employee_edit_view(request, id):
-    obj = get_object_or_404(Employee, id=id)
+    obj = Employee.objects.filter(id=id)
+    if not obj:
+        return render(request, 'employee/employee_notfound.html')
 
-    form = ChnageEmployeeForm(request.POST or None, instance=obj)
+    form = ChnageEmployeeForm(request.POST or None, instance=obj[0])
     if form.is_valid():
         form.save()
         return redirect('employee:employee_list')
