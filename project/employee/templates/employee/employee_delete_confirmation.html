@@ -9,8 +9,8 @@
                 <h4>Do you want do delete {{ object.first_name }} {{ object.last_name }} with ID: {{ object.id }} ?</h2>
                 {% csrf_token %}
 
-                <input type="submit" name="action" value="Delete" class="btn btn-success"></input>
-                <input type="submit" name="action" value="Cancel" class="btn btn-danger"></input>
+                <input type="submit" name="action" value="Delete" class="btn btn-danger"></input>
+                <input type="submit" name="action" value="Cancel" class="btn btn-success"></input>
             </form>
             
         </div>

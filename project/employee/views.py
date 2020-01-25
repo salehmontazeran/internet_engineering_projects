@@ -4,9 +4,7 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max, Min, Sum
 from django.forms import ValidationError
-from django.http import HttpResponseNotFound
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
+from django.shortcuts import redirect, render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.status import HTTP_404_NOT_FOUND
@@ -172,7 +170,7 @@ def employee_report_view(request):
         }
     except Exception as e:
         print(e)
-        return HttpResponseNotFound()
+        return render(request, "employee/employee_report_error.html")
 
     return render(request, "employee/employee_report.html", context)
 
